@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('chat_users', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
             $table->uuid('chat_id');
@@ -23,14 +23,12 @@ return new class extends Migration
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->text('content');
-
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('chat_users');
     }
 };
