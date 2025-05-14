@@ -24,6 +24,18 @@ class Chat extends Model
 
     public function users(): HasManyThrough
     {
-        return $this->hasManyThrough(User::class, ChatUser::class);
+        return $this->hasManyThrough(
+            User::class,
+            ChatUser::class,
+            'chat_id',
+            'id',
+            'id',
+            'user_id',
+        );
+    }
+
+    public function chatUsers(): HasMany
+    {
+        return $this->hasMany(ChatUser::class);
     }
 }
